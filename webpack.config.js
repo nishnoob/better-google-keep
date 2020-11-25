@@ -16,7 +16,16 @@ module.exports = {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"],
             },
+            {
+                test: /\.svg$/,
+                use: ["@svgr/webpack"],
+            },
         ],
+    },
+    resolve: {
+        alias: {
+            icons: path.resolve(__dirname, "src/Icons/"),
+        },
     },
     output: {
         path: path.resolve(__dirname, "build/"),
