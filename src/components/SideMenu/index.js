@@ -3,8 +3,7 @@ import "./index.css";
 import LightBulb from "icons/light-bulb.svg";
 import ArchiveIcon from "icons/archive-icon.svg";
 
-const SideMenu = ({ visible }) => {
-    const [showArchives, toggleArchives] = useState(false);
+const SideMenu = ({ visible, showArchives, toggleArchives }) => {
     const [peek, setPeek] = useState(false);
     return (
         <div

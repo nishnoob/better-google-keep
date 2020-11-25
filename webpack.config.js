@@ -24,6 +24,7 @@ module.exports = {
     },
     resolve: {
         alias: {
+            root: path.resolve(__dirname, "src/"),
             icons: path.resolve(__dirname, "src/Icons/"),
         },
     },
