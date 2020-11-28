@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import "./index.css";
-import MenuIcon from "icons/menu.svg";
-import SearchIcon from "icons/search-icon.svg";
+import { useSelector } from "react-redux";
+
+import Header from "./Header";
 import SideMenu from "./SideMenu";
 import CreateBox from "./CreateBox";
-import { useSelector } from "react-redux";
 import DisplayBox from "./DisplayBox";
+import NoteModal from "./NoteModal";
 
 const BetterKeep = () => {
-    const [menuOpen, setMenuOpen] = useState(true);
     const [searchOpen, setSearchOpen] = useState(false);
     const [searchKey, setSearchKey] = useState("");
-    const [showArchives, toggleArchives] = useState(false);
     const notesList = useSelector((state) => state.notes);
+    const showArchives = useSelector((state) => state.showArchives);
+    const isMenuOpen = useSelector((state) => state.isMenuOpen);
+    const selectedNote = useSelector((state) => state.selectedNote);
+    const selectedNoteData = notesList.filter(
+        (item) => item.id === selectedNote.id
+    );
 
     const pinnedNotes = [];
     const notesToShow = notesList.filter((noteItem) => {
@@ -39,90 +44,68 @@ const BetterKeep = () => {
 
     return (
         <div className="container">
-            <div className="header">
-                <div className="header-left">
-                    <div
-                        className="hamburger"
-                        onClick={() => {
-                            setMenuOpen(!menuOpen);
-                        }}
-                    >
-                        <MenuIcon width={18} height={18} fill="white" />
-                    </div>
-                    Better Keep
-                </div>
+            <Header
+                searchKey={searchKey}
+                setSearchKey={setSearchKey}
+                searchOpen={searchOpen}
+                setSearchOpen={setSearchOpen}
+            />
+            <div className="bottom">
+                <SideMenu visible={isMenuOpen} showArchives={showArchives} />
                 <div
                     className={
-                        searchOpen
-                            ? "search-container search-container-open"
-                            : "search-container"
+                        isMenuOpen
+                            ? "body-content"
+                            : "body-content body-content-big"
                     }
                 >
-                    <div className="search-icon-container">
-                        <SearchIcon
-                            width={18}
-                            height={18}
-                            fill={searchOpen ? "black" : "white"}
-                        />
-                    </div>
-                    <input
-                        className="search-input"
-                        placeholder="Search"
-                        value={searchKey}
-                        onChange={(e) => setSearchKey(e.target.value)}
-                        onFocus={() => setSearchOpen(true)}
-                        onBlur={() => {
-                            setSearchOpen(false);
-                            setSearchKey("");
-                        }}
-                    ></input>
-                    {searchOpen && searchKey.length > 0 && (
-                        <div
-                            className="search-clear-container"
-                            onClick={() => setSearchKey("")}
-                        >
-                            &#10005;
-                        </div>
-                    )}
-                </div>
-            </div>
-            <div className="bottom">
-                <SideMenu
-                    visible={menuOpen}
-                    showArchives={showArchives}
-                    toggleArchives={(val) => toggleArchives(val)}
-                />
-                <div className="body-content">
                     <div className="content-top">
                         <CreateBox />
                     </div>
-                    {!showArchives && pinnedNotes.length > 0 && (
-                        <>
-                            <span>PINNED</span>
-                            <div className="notes-container">
-                                {pinnedNotes.map((noteItem, index) => (
-                                    <DisplayBox
-                                        key={noteItem.id}
-                                        searchKey={searchKey}
-                                        {...noteItem}
-                                    />
-                                ))}
-                            </div>
-                        </>
-                    )}
-                    <>
-                        {pinnedNotes.length > 0 && <span>OTHERS</span>}
-                        <div className="notes-container">
-                            {notesToShow.map((noteItem, index) => (
-                                <DisplayBox
-                                    key={noteItem.id}
-                                    searchKey={searchKey}
-                                    {...noteItem}
-                                />
-                            ))}
+                    {notesList.length > 0 ? (
+                        <div>
+                            {!showArchives && pinnedNotes.length > 0 && (
+                                <>
+                                    <div className="body-section-header">
+                                        PINNED
+                                    </div>
+                                    <div className="notes-container">
+                                        {pinnedNotes.map((noteItem, index) => (
+                                            <DisplayBox
+                                                key={noteItem.id}
+                                                searchKey={searchKey}
+                                                {...noteItem}
+                                            />
+                                        ))}
+                                    </div>
+                                </>
+                            )}
+                            <>
+                                {pinnedNotes.length > 0 && (
+                                    <div className="body-section-header">
+                                        OTHERS
+                                    </div>
+                                )}
+                                <div className="notes-container">
+                                    {notesToShow.map((noteItem, index) => (
+                                        <DisplayBox
+                                            key={noteItem.id}
+                                            searchKey={searchKey}
+                                            {...noteItem}
+                                        />
+                                    ))}
+                                </div>
+                            </>
                         </div>
-                    </>
+                    ) : (
+                        <p className="empty-text">
+                            Better Keep a note of it...
+                        </p>
+                    )}
                 </div>
+                {selectedNote.id && (
+                    <NoteModal selectedNote={selectedNoteData[0]} />
+                )}
             </div>
         </div>
     );

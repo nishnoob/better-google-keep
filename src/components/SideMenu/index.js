@@ -1,46 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.css";
 import LightBulb from "icons/light-bulb.svg";
 import ArchiveIcon from "icons/archive-icon.svg";
+import { useDispatch } from "react-redux";
+import { TOGGLE_ARCHIVES } from "../../reducer";
 
-const SideMenu = ({ visible, showArchives, toggleArchives }) => {
-    const [peek, setPeek] = useState(false);
+const SideMenu = ({ visible, showArchives }) => {
+    const dispatch = useDispatch();
+
     return (
         <div
             className={
-                visible || peek
+                visible
                     ? "side-menu-container"
                     : "side-menu-container side-menu-closed"
             }
-            onMouseOver={() => {
-                if (!visible) {
-                    setPeek(true);
-                }
-            }}
-            onMouseOut={() => {
-                // if (visible) {
-                setPeek(false);
-                // }
-            }}
         >
             <div
                 className={
                     showArchives
-                        ? visible || peek
+                        ? visible
                             ? "side-menu-item"
                             : "side-menu-item side-menu-item-round"
-                        : visible || peek
+                        : visible
                         ? "side-menu-item-selected"
                         : "side-menu-item-selected side-menu-item-round"
                 }
-                onClick={() => toggleArchives(false)}
+                onClick={() =>
+                    dispatch({ type: TOGGLE_ARCHIVES, payload: false })
+                }
             >
                 <div className="menu-icon-container">
                     <LightBulb fill={showArchives ? "grey" : "white"} />
                 </div>
                 <div
                     className={
-                        visible || peek
+                        visible
                             ? "menu-item-text"
                             : "menu-item-text display-none"
                     }
@@ -51,21 +46,23 @@ const SideMenu = ({ visible, showArchives, toggleArchives }) => {
             <div
                 className={
                     showArchives
-                        ? visible || peek
+                        ? visible
                             ? "side-menu-item-selected"
                             : "side-menu-item-selected side-menu-item-round"
-                        : visible || peek
+                        : visible
                         ? "side-menu-item"
                         : "side-menu-item side-menu-item-round"
                 }
-                onClick={() => toggleArchives(true)}
+                onClick={() =>
+                    dispatch({ type: TOGGLE_ARCHIVES, payload: true })
+                }
             >
                 <div className="menu-icon-container">
                     <ArchiveIcon fill={showArchives ? "white" : "grey"} />
                 </div>
                 <div
                     className={
-                        visible || peek
+                        visible
                             ? "menu-item-text"
                             : "menu-item-text display-none"
                     }

@@ -23,6 +23,7 @@
     color: #dadce0;
     font-size: 16px;
     font-family: "Product Sans", Arial, sans-serif;
+    box-sizing: border-box;
 }
 .close-btn {
     position: absolute;
@@ -36,5 +37,5 @@
     font-weight: 600;
 }
 .close-btn:hover {
-    background-color: rgba(141, 141, 141, 0.555);
+    background-color: rgba(141, 141, 141, 0.205);
 }

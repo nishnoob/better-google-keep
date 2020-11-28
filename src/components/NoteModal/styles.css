@@ -1,0 +1,87 @@
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #202124bb;
+}
+.modal-container {
+    width: 600px;
+    min-height: 500px;
+    margin: 50px auto 0px auto;
+    border: 1px rgba(141, 141, 141, 0.671) solid;
+    background-color: rgb(32 33 36);
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    padding-bottom: 50px;
+}
+.modal-title {
+    font-size: 20px;
+    padding: 16px 15px 12px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+.modal-description {
+    font-size: 18px;
+    font-family: "Roboto";
+    padding: 4px 16px 12px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+    flex-grow: 1;
+}
+
+.modal-pin-icon {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.modal-pin-icon:hover {
+    background-color: rgb(56, 56, 56);
+}
+.modal-archive-icon {
+    position: absolute;
+    left: 14px;
+    bottom: 10px;
+    width: 22px;
+    height: 22px;
+    padding: 4px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.upside-down {
+    transform: rotate(180deg);
+}
+.modal-archive-icon:hover {
+    background-color: rgb(56, 56, 56);
+}
+
+@media only screen and (max-width: 768px) {
+    .modal-container {
+        width: 100%;
+        height: calc(100vh - 50px);
+        margin: 0px;
+        border: none;
+        background-color: rgb(32 33 36);
+        /* border-radius: 8px; */
+        position: relative;
+        display: flex;
+        flex-flow: column;
+        padding-bottom: 50px;
+    }
+}

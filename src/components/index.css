@@ -5,86 +5,52 @@
     bottom: 0;
     left: 0;
     right: 0;
-}
-
-.header {
-    width: 100%;
-    border-bottom: 1px rgba(141, 141, 141, 0.671) solid;
-    padding: 7px 16px;
+    overflow-y: auto;
     display: flex;
-    box-sizing: border-box;
-}
-.header-left {
-    width: 20%;
-    color: white;
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-}
-.hamburger {
-    height: 48px;
-    width: 48px;
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 12px;
-}
-div.hamburger:hover {
-    background-color: rgba(153, 153, 153, 0.432);
-}
-.search-container {
-    width: 50%;
-    border-radius: 8px;
-    background-color: rgba(241, 243, 244, 0.24);
-    color: "white";
-    display: flex;
-    align-items: center;
-}
-.search-icon-container {
-    padding: 0px 16px;
-    margin-top: 2px;
-}
-.search-clear-container {
-    width: 50px;
-    height: 44px;
-    border-radius: 22px;
-    cursor: pointer;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 12px;
-}
-.search-clear-container:hover {
-    background-color: rgb(236, 236, 236);
-}
-.search-container-open {
-    background-color: white;
-    color: "white";
-}
-.search-input {
-    height: 48px;
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    font-size: 18px;
-    /* color: ; */
+    flex-flow: column;
 }
 .bottom {
-    display: flex;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 .body-content {
     width: 100%;
+    margin-left: 200px;
+    box-sizing: border-box;
     padding: 0px 42px;
 }
+.body-section-header {
+    color: #9aa0a6;
+    font-size: 12px;
+    text-align: left;
+    font-weight: 500;
+    padding: 32px 32px 8px 16px;
+}
+.body-content-big {
+    margin-left: 70px;
+}
 .content-top {
-    width: 500px;
+    max-width: 500px;
     margin: 32px auto 16px auto;
 }
 .notes-container {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 20px;
+}
+.empty-text {
+    font-size: 28px;
+    color: rgb(155, 155, 155);
+    padding-top: 150px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .body-content {
+        margin-left: 0px;
+        padding: 0px 16px;
+    }
+    /* .content-top {
+        width: 500px;
+    } */
 }

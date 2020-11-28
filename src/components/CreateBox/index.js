@@ -76,7 +76,7 @@ const CreateBox = () => {
                     }
                 }}
                 // onBlur={() => setExpand(false)}
-                rows={expand ? 2 : 1}
+                rows={expand ? 3 : 1}
                 className="note-area"
                 placeholder="Take a note..."
                 value={description}
