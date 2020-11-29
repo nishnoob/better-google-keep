@@ -17,7 +17,7 @@ const Header = ({ searchKey, searchOpen, setSearchKey, setSearchOpen }) => {
                         dispatch({ type: TOGGLE_MENU });
                     }}
                 >
-                    <MenuIcon width={18} height={18} fill="white" />
+                    <MenuIcon width={18} height={18} className="menu-icon" />
                 </div>
                 <span className="logo">Better Keep</span>
             </div>
@@ -32,7 +32,11 @@ const Header = ({ searchKey, searchOpen, setSearchKey, setSearchOpen }) => {
                     <SearchIcon
                         width={18}
                         height={18}
-                        fill={searchOpen ? "black" : "white"}
+                        className={
+                            searchOpen
+                                ? "search-icon"
+                                : "search-icon search-icon-inverted"
+                        }
                     />
                 </div>
                 <input

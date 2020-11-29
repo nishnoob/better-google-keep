@@ -12,28 +12,19 @@ import {
     SELECT_NOTE,
 } from "root/reducer";
 
-const DisplayBox = ({
-    id,
-    title,
-    description,
-    searchKey,
-    isArchived,
-    isPinned,
-}) => {
+const DisplayBox = ({ id, title, description, isArchived, isPinned }) => {
     const dispatch = useDispatch();
     const selectedNote = useSelector((state) => state.selectedNote);
 
     return (
         <div
             className={
-                selectedNote.id === id
-                    ? "display-box no-display"
-                    : "display-box"
+                selectedNote === id ? "display-box no-display" : "display-box"
             }
             onClick={(e) => {
                 dispatch({
                     type: SELECT_NOTE,
-                    payload: { id, title, description, isArchived, isPinned },
+                    payload: id,
                 });
                 e.stopPropagation();
             }}
@@ -52,7 +43,7 @@ const DisplayBox = ({
                 &#10005;
             </div>
             <div
-                className="pin-icon"
+                className="pin-icon-container"
                 onClick={(e) => {
                     dispatch({
                         type: isPinned ? UNPIN_NOTE : PIN_NOTE,
@@ -62,11 +53,13 @@ const DisplayBox = ({
                 }}
                 title={isPinned ? "Pin" : "Unpin"}
             >
-                <PinIcon />
+                <PinIcon className="pin-icon" />
             </div>
             <div
                 className={
-                    isArchived ? "archive-icon upside-down" : "archive-icon"
+                    isArchived
+                        ? "archive-icon-container upside-down"
+                        : "archive-icon-container"
                 }
                 onClick={(e) => {
                     dispatch({
@@ -77,7 +70,7 @@ const DisplayBox = ({
                 }}
                 title={isArchived ? "Unarchive" : "Archive"}
             >
-                <ArchiveIcon fill="white" />
+                <ArchiveIcon className="archive-icon" />
             </div>
             <div className="display-box-title">{title}</div>
             <div className="display-box-description">{description}</div>

@@ -1,13 +1,13 @@
 .header {
     width: 100%;
-    border-bottom: 1px rgba(141, 141, 141, 0.671) solid;
+    border-bottom: 1px var(--color-border) solid;
     padding: 7px 16px;
     display: flex;
     box-sizing: border-box;
 }
 .header-left {
     width: 20%;
-    color: white;
+    color: var(--color-primary-text);
     font-size: 22px;
     display: flex;
     align-items: center;
@@ -23,13 +23,21 @@
     cursor: pointer;
 }
 div.hamburger:hover {
-    background-color: rgba(153, 153, 153, 0.432);
+    background-color: var(--color-hover-highlight);
 }
-
+.menu-icon {
+    fill: var(--color-primary-text);
+}
+.search-icon {
+    fill: var(--color-secondary-text);
+}
+.search-icon-inverted {
+    filter: invert(100%);
+}
 .search-container {
     width: 50%;
     border-radius: 8px;
-    background-color: rgba(241, 243, 244, 0.24);
+    background-color: var(--color-secondary-background);
     color: "white";
     display: flex;
     align-items: center;
@@ -43,18 +51,17 @@ div.hamburger:hover {
     height: 44px;
     border-radius: 22px;
     cursor: pointer;
-    color: black;
+    color: var(--color-secondary-text);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 12px;
 }
 .search-clear-container:hover {
-    background-color: rgb(236, 236, 236);
+    background-color: var(--color-secondary-hover-highlight);
 }
 .search-container-open {
-    background-color: white;
-    color: "white";
+    background-color: var(--color-primary-text);
 }
 .search-input {
     height: 48px;

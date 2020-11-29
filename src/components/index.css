@@ -1,5 +1,5 @@
 .container {
-    background-color: rgba(32, 33, 36, 1);
+    background-color: var(--color-background);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -20,7 +20,7 @@
     padding: 0px 42px;
 }
 .body-section-header {
-    color: #9aa0a6;
+    color: var(--color-inactive);
     font-size: 12px;
     text-align: left;
     font-weight: 500;
@@ -40,7 +40,7 @@
 }
 .empty-text {
     font-size: 28px;
-    color: rgb(155, 155, 155);
+    color: var(--color-inactive);
     padding-top: 150px;
     text-align: center;
 }
@@ -50,7 +50,4 @@
         margin-left: 0px;
         padding: 0px 16px;
     }
-    /* .content-top {
-        width: 500px;
-    } */
 }

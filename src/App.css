@@ -1,5 +1,17 @@
+:root {
+    --color-background: rgba(32, 33, 36, 1);
+    --color-secondary-background: rgb(241, 243, 244, 0.24);
+    --color-inactive: #9aa0a6;
+    --color-hover-highlight: rgb(56, 56, 56);
+    --color-secondary-hover-highlight: rgb(236, 236, 236);
+    --color-selected-yellow: #41331c;
+    --color-border: rgba(141, 141, 141, 0.671);
+    --color-primary-text: white;
+    --color-secondary-text: black;
+}
+
 body {
     margin: 0;
     font-family: "Roboto", sans-serif;
-    color: #dadce0;
+    color: var(--color-primary-text);
 }

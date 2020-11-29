@@ -14,12 +14,15 @@ export const TOGGLE_ARCHIVES = "TOGGLE_ARCHIVES";
 export const SELECT_NOTE = "SELECT_NOTE";
 export const UNSELECT_NOTE = "UNSELECT_NOTE";
 
+export const TOGGLE_DARK_MODE = "TOGGLE_DARK_MODE";
+
 function reducer(
     state = {
         notes: [],
         isMenuOpen: true,
         showArchives: false,
         selectedNote: { id: null },
+        isDarkMode: false,
     },
     action
 ) {
@@ -125,12 +128,17 @@ function reducer(
         case SELECT_NOTE:
             return {
                 ...state,
-                selectedNote: { ...action.payload },
+                selectedNote: action.payload,
             };
         case UNSELECT_NOTE:
             return {
                 ...state,
-                selectedNote: { id: null },
+                selectedNote: null,
+            };
+        case TOGGLE_DARK_MODE:
+            return {
+                ...state,
+                isDarkMode: !state.isDarkMode,
             };
         default:
             return state;

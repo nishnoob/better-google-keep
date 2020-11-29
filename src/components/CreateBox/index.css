@@ -1,9 +1,7 @@
 .create-container {
-    /* height: 46px; */
     position: relative;
     width: 100%;
-    border: 1px rgba(141, 141, 141, 0.671) solid;
-    color: rgba(141, 141, 141, 0.671);
+    border: 1px var(--color-hover-highlight) solid;
     border-radius: 6px;
     -webkit-box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.75);
@@ -20,7 +18,7 @@
     border: none;
     resize: none;
     outline: none;
-    color: #dadce0;
+    color: var(--color-primary-text);
     font-size: 16px;
     font-family: "Product Sans", Arial, sans-serif;
     box-sizing: border-box;
@@ -32,10 +30,10 @@
     cursor: pointer;
     border-radius: 4px;
     padding: 8px 24px;
-    color: #dadce0;
+    color: var(--color-primary-text);
     font-size: 14px;
     font-weight: 600;
 }
 .close-btn:hover {
-    background-color: rgba(141, 141, 141, 0.205);
+    background-color: var(--color-hover-highlight);
 }

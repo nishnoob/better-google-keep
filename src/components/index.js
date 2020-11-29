@@ -15,30 +15,34 @@ const BetterKeep = () => {
     const showArchives = useSelector((state) => state.showArchives);
     const isMenuOpen = useSelector((state) => state.isMenuOpen);
     const selectedNote = useSelector((state) => state.selectedNote);
-    const selectedNoteData = notesList.filter(
-        (item) => item.id === selectedNote.id
-    );
+    const selectedNoteData = selectedNote
+        ? notesList.filter((item) => item.id === selectedNote)
+        : [];
 
     const pinnedNotes = [];
     const notesToShow = notesList.filter((noteItem) => {
         if (searchKey.length) {
-            if (noteItem.description) {
-                return noteItem.description.toLowerCase().includes(searchKey);
-            } else if (noteItem.title) {
-                return noteItem.title.toLowerCase().includes(searchKey);
-            } else {
+            if (
+                (noteItem.description &&
+                    noteItem.description.toLowerCase().includes(searchKey)) ||
+                (noteItem.title &&
+                    noteItem.title.toLowerCase().includes(searchKey))
+            ) {
+                if (noteItem.isArchived) {
+                    return true;
+                }
+                pinnedNotes.push(noteItem);
+            }
+        } else {
+            if (showArchives && noteItem.isArchived) {
+                return true;
+            } else if (!showArchives && !noteItem.isArchived) {
+                if (noteItem.isPinned) {
+                    pinnedNotes.push(noteItem);
+                    return false;
+                }
                 return true;
             }
-        }
-
-        if (showArchives && noteItem.isArchived) {
-            return true;
-        } else if (!showArchives && !noteItem.isArchived) {
-            if (noteItem.isPinned) {
-                pinnedNotes.push(noteItem);
-                return false;
-            }
-            return true;
         }
     });
 
@@ -64,26 +68,34 @@ const BetterKeep = () => {
                     </div>
                     {notesList.length > 0 ? (
                         <div>
-                            {!showArchives && pinnedNotes.length > 0 && (
-                                <>
-                                    <div className="body-section-header">
-                                        PINNED
-                                    </div>
-                                    <div className="notes-container">
-                                        {pinnedNotes.map((noteItem, index) => (
-                                            <DisplayBox
-                                                key={noteItem.id}
-                                                searchKey={searchKey}
-                                                {...noteItem}
-                                            />
-                                        ))}
-                                    </div>
-                                </>
-                            )}
+                            {(!showArchives || searchKey.length > 0) &&
+                                pinnedNotes.length > 0 && (
+                                    <>
+                                        <div className="body-section-header">
+                                            {searchKey.length > 0
+                                                ? "SEARCH"
+                                                : "PINNED"}
+                                        </div>
+                                        <div className="notes-container">
+                                            {pinnedNotes.map(
+                                                (noteItem, index) => (
+                                                    <DisplayBox
+                                                        key={noteItem.id}
+                                                        searchKey={searchKey}
+                                                        {...noteItem}
+                                                    />
+                                                )
+                                            )}
+                                        </div>
+                                    </>
+                                )}
                             <>
-                                {pinnedNotes.length > 0 && (
+                                {(pinnedNotes.length > 0 ||
+                                    searchKey.length > 0) && (
                                     <div className="body-section-header">
-                                        OTHERS
+                                        {searchKey.length > 0
+                                            ? "ARCHIVED"
+                                            : "OTHERS"}
                                     </div>
                                 )}
                                 <div className="notes-container">
@@ -103,7 +115,7 @@ const BetterKeep = () => {
                         </p>
                     )}
                 </div>
-                {selectedNote.id && (
+                {selectedNote && (
                     <NoteModal selectedNote={selectedNoteData[0]} />
                 )}
             </div>

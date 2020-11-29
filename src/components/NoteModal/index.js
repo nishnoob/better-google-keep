@@ -17,8 +17,8 @@ const NoteModal = ({ selectedNote }) => {
         ...selectedNote,
     });
     const dispatch = useDispatch();
-    console.log("SELLLL", selectedNote);
-    if (!selectedNote.id) return null;
+
+    if (!selectedNote) return null;
 
     const closeNote = () => {
         if (JSON.stringify(noteDetails) !== JSON.stringify(selectedNote)) {
@@ -40,7 +40,7 @@ const NoteModal = ({ selectedNote }) => {
                 onClick={(e) => e.stopPropagation()}
             >
                 <div
-                    className="modal-pin-icon"
+                    className="modal-pin-icon-container"
                     onClick={(e) => {
                         dispatch({
                             type: selectedNote.isPinned ? UNPIN_NOTE : PIN_NOTE,
@@ -50,13 +50,13 @@ const NoteModal = ({ selectedNote }) => {
                     }}
                     title={selectedNote.isPinned ? "Unpin" : "Pin"}
                 >
-                    <PinIcon />
+                    <PinIcon className="modal-pin-icon" />
                 </div>
                 <div
                     className={
                         selectedNote.isArchived
-                            ? "modal-archive-icon upside-down"
-                            : "modal-archive-icon"
+                            ? "modal-archive-icon-container upside-down"
+                            : "modal-archive-icon-container"
                     }
                     onClick={(e) => {
                         dispatch({
@@ -69,7 +69,7 @@ const NoteModal = ({ selectedNote }) => {
                     }}
                     title={selectedNote.isArchived ? "Unarchive" : "Archive"}
                 >
-                    <ArchiveIcon fill="white" />
+                    <ArchiveIcon className="modal-archive-icon" />
                 </div>
                 <div className="close-btn" onClick={closeNote}>
                     Close
