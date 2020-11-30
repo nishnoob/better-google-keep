@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
     EDIT_NOTE,
     PIN_NOTE,
@@ -16,9 +16,18 @@ const NoteModal = ({ selectedNote }) => {
     const [noteDetails, setNoteDetails] = useState({
         ...selectedNote,
     });
+
+    useEffect(() => {
+        setNoteDetails({ ...selectedNote });
+    }, [selectedNote]);
     const dispatch = useDispatch();
 
-    if (!selectedNote) return null;
+    if (
+        !selectedNote ||
+        Object.keys(selectedNote).length === 0 ||
+        !selectedNote.id
+    )
+        return null;
 
     const closeNote = () => {
         if (JSON.stringify(noteDetails) !== JSON.stringify(selectedNote)) {

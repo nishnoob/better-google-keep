@@ -35,10 +35,9 @@ div.hamburger:hover {
     filter: invert(100%);
 }
 .search-container {
-    width: 50%;
+    width: 40%;
     border-radius: 8px;
     background-color: var(--color-secondary-background);
-    color: "white";
     display: flex;
     align-items: center;
 }

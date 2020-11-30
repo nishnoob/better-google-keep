@@ -90,14 +90,14 @@ const BetterKeep = () => {
                                     </>
                                 )}
                             <>
-                                {(pinnedNotes.length > 0 ||
-                                    searchKey.length > 0) && (
-                                    <div className="body-section-header">
-                                        {searchKey.length > 0
-                                            ? "ARCHIVED"
-                                            : "OTHERS"}
-                                    </div>
-                                )}
+                                {notesToShow.length > 0 &&
+                                    searchKey.length > 0 && (
+                                        <div className="body-section-header">
+                                            {searchKey.length > 0
+                                                ? "ARCHIVED"
+                                                : "OTHERS"}
+                                        </div>
+                                    )}
                                 <div className="notes-container">
                                     {notesToShow.map((noteItem, index) => (
                                         <DisplayBox
@@ -115,9 +115,7 @@ const BetterKeep = () => {
                         </p>
                     )}
                 </div>
-                {selectedNote && (
-                    <NoteModal selectedNote={selectedNoteData[0]} />
-                )}
+                <NoteModal selectedNote={selectedNoteData[0]} />
             </div>
         </div>
     );

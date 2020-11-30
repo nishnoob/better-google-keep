@@ -15,6 +15,7 @@ import {
 const DisplayBox = ({ id, title, description, isArchived, isPinned }) => {
     const dispatch = useDispatch();
     const selectedNote = useSelector((state) => state.selectedNote);
+    const rawMarkupDescription = DOMPurify.sanitize(marked(description));
 
     return (
         <div
@@ -73,7 +74,10 @@ const DisplayBox = ({ id, title, description, isArchived, isPinned }) => {
                 <ArchiveIcon className="archive-icon" />
             </div>
             <div className="display-box-title">{title}</div>
-            <div className="display-box-description">{description}</div>
+            <div
+                className="display-box-description"
+                dangerouslySetInnerHTML={{ __html: rawMarkupDescription }}
+            ></div>
         </div>
     );
 };

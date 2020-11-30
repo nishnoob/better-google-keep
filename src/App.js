@@ -14,6 +14,7 @@ const themes = {
         "--color-border": "rgba(141, 141, 141, 0.671)",
         "--color-primary-text": "white",
         "--color-secondary-text": "black",
+        "--color-primary-shadow": "0px 2px 10px -1px rgba(0, 0, 0, 0.75)",
     },
     light: {
         "--color-background": "#e0e0e0",
@@ -25,10 +26,22 @@ const themes = {
         "--color-border": "rgba(141, 141, 141, 0.671)",
         "--color-primary-text": "#5a5a5a",
         "--color-secondary-text": "#282828",
+        "--color-primary-shadow": "0px 2px 5px -1px rgba(0, 0, 0, 0.2)",
     },
 };
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+
+        const theme = themes.light;
+
+        Object.keys(theme).forEach((key) => {
+            const value = theme[key];
+            document.documentElement.style.setProperty(key, value);
+        });
+    }
+
     componentDidUpdate(prevProps, prevState) {
         const { isDarkMode } = this.props;
         if (prevProps.isDarkMode !== isDarkMode) {

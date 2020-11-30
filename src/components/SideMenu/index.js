@@ -3,7 +3,7 @@ import "./index.css";
 import LightBulb from "icons/light-bulb.svg";
 import ArchiveIcon from "icons/archive-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { TOGGLE_ARCHIVES, TOGGLE_DARK_MODE } from "../../reducer";
+import { TOGGLE_ARCHIVES, TOGGLE_DARK_MODE } from "root/reducer";
 
 const SideMenu = ({ visible, showArchives }) => {
     const dispatch = useDispatch();
@@ -75,11 +75,12 @@ const SideMenu = ({ visible, showArchives }) => {
                 <label className="switch">
                     <input
                         type="checkbox"
-                        value={isDarkMode}
+                        checked={isDarkMode}
                         onChange={() => dispatch({ type: TOGGLE_DARK_MODE })}
                     ></input>
                     <span class="slider round"></span>
                 </label>
+                <div className="switch-header">DARK MODE</div>
             </div>
         </div>
     );

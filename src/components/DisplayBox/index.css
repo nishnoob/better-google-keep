@@ -65,9 +65,9 @@
     background-color: var(--color-hover-highlight);
 }
 .display-box:hover {
-    -webkit-box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: var(--color-primary-shadow);
+    -moz-box-shadow: var(--color-primary-shadow);
+    box-shadow: var(--color-primary-shadow);
 }
 .display-box:hover .pin-icon-container {
     display: block;
