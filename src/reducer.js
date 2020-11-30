@@ -19,7 +19,7 @@ export const TOGGLE_DARK_MODE = "TOGGLE_DARK_MODE";
 function reducer(
     state = {
         notes: [],
-        isMenuOpen: true,
+        isMenuOpen: false,
         showArchives: false,
         selectedNote: null,
         isDarkMode: false,

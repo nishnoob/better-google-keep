@@ -58,14 +58,16 @@ const Header = ({
                         setSearchKey("");
                     }}
                 ></input>
-                {searchOpen && searchKey.length > 0 && (
-                    <div
-                        className="search-clear-container"
-                        onClick={() => setSearchKey("")}
-                    >
-                        &#10005;
-                    </div>
-                )}
+                <div
+                    className={
+                        searchOpen && searchKey.length > 0
+                            ? "search-clear-container"
+                            : "search-clear-container no-display"
+                    }
+                    onClick={() => setSearchKey("")}
+                >
+                    &#10005;
+                </div>
             </div>
         </div>
     );
