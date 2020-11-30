@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./index.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Header from "./Header";
 import SideMenu from "./SideMenu";
 import CreateBox from "./CreateBox";
 import DisplayBox from "./DisplayBox";
 import NoteModal from "./NoteModal";
+import { TOGGLE_MENU } from "../reducer";
 
 const BetterKeep = () => {
     const [searchOpen, setSearchOpen] = useState(false);
@@ -18,7 +19,7 @@ const BetterKeep = () => {
     const selectedNoteData = selectedNote
         ? notesList.filter((item) => item.id === selectedNote)
         : [];
-
+    const dispatch = useDispatch();
     const pinnedNotes = [];
     const notesToShow = notesList.filter((noteItem) => {
         if (searchKey.length) {
@@ -45,6 +46,8 @@ const BetterKeep = () => {
             }
         }
     });
+
+    console.log("NOTES TO SHOW", notesToShow);
 
     return (
         <div className="container">
@@ -91,14 +94,14 @@ const BetterKeep = () => {
                                     </>
                                 )}
                             <>
-                                {notesToShow.length > 0 &&
-                                    searchKey.length > 0 && (
-                                        <div className="body-section-header">
-                                            {searchKey.length > 0
-                                                ? "ARCHIVED"
-                                                : "OTHERS"}
-                                        </div>
-                                    )}
+                                {(notesToShow.length > 0 ||
+                                    searchKey.length > 0) && (
+                                    <div className="body-section-header">
+                                        {searchKey.length > 0
+                                            ? "ARCHIVED"
+                                            : "OTHERS"}
+                                    </div>
+                                )}
                                 <div className="notes-container">
                                     {notesToShow.map((noteItem, index) => (
                                         <DisplayBox
@@ -117,6 +120,12 @@ const BetterKeep = () => {
                     )}
                 </div>
                 <NoteModal selectedNote={selectedNoteData[0]} />
+                {isMenuOpen && (
+                    <div
+                        className="menu-backdrop"
+                        onClick={() => dispatch({ type: TOGGLE_MENU })}
+                    ></div>
+                )}
             </div>
         </div>
     );

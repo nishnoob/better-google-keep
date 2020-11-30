@@ -47,6 +47,8 @@ function reducer(
                         id: action.payload.id,
                         title: action.payload.title,
                         description: action.payload.description,
+                        isArchived: action.payload.isArchived,
+                        isPinned: action.payload.isPinned,
                     },
                 ],
             };

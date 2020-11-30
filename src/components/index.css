@@ -44,11 +44,22 @@
     padding-top: 150px;
     text-align: center;
 }
-
+.menu-backdrop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #202124bb;
+    display: none;
+}
 @media only screen and (max-width: 768px) {
     .body-content {
         margin-left: 0px;
         padding: 0px 16px;
+    }
+    .menu-backdrop {
+        display: block;
     }
 }
 

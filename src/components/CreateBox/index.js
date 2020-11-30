@@ -36,6 +36,10 @@ const CreateBox = () => {
             setTitle("");
             setPinned(false);
             setArchived(false);
+            noteDataRef.current.description = null;
+            noteDataRef.current.title = null;
+            noteDataRef.current.isPinned = false;
+            noteDataRef.current.isArchived = false;
         }
     };
 
