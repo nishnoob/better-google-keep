@@ -11,6 +11,7 @@ const Header = ({
     setSearchKey,
     setSearchOpen,
     showArchives,
+    isMenuOpen,
 }) => {
     const dispatch = useDispatch();
 
@@ -52,7 +53,12 @@ const Header = ({
                     placeholder="Search"
                     value={searchKey}
                     onChange={(e) => setSearchKey(e.target.value)}
-                    onFocus={() => setSearchOpen(true)}
+                    onFocus={() => {
+                        if (isMenuOpen) {
+                            dispatch({ type: TOGGLE_MENU });
+                        }
+                        setSearchOpen(true);
+                    }}
                     onBlur={() => {
                         setSearchOpen(false);
                         setSearchKey("");

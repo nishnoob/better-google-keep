@@ -57,6 +57,7 @@ const BetterKeep = () => {
                 searchOpen={searchOpen}
                 setSearchOpen={setSearchOpen}
                 showArchives={showArchives}
+                isMenuOpen={isMenuOpen}
             />
             <div className="bottom">
                 <SideMenu visible={isMenuOpen} showArchives={showArchives} />
