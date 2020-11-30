@@ -4,13 +4,15 @@
     padding: 7px 16px;
     display: flex;
     box-sizing: border-box;
+    justify-content: center;
 }
 .header-left {
-    width: 20%;
     color: var(--color-primary-text);
     font-size: 22px;
     display: flex;
     align-items: center;
+    position: absolute;
+    left: 16px;
 }
 .hamburger {
     height: 48px;

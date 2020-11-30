@@ -21,7 +21,7 @@ function reducer(
         notes: [],
         isMenuOpen: true,
         showArchives: false,
-        selectedNote: { id: null },
+        selectedNote: null,
         isDarkMode: false,
     },
     action

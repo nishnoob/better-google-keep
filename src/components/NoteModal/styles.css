@@ -69,6 +69,7 @@
     padding: 4px;
     border-radius: 15px;
     cursor: pointer;
+    transition: 0.1s;
 }
 .modal-archive-icon {
     fill: var(--color-primary-text);

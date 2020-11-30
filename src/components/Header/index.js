@@ -5,7 +5,13 @@ import { TOGGLE_MENU } from "root/reducer";
 import "./styles.css";
 import { useDispatch } from "react-redux";
 
-const Header = ({ searchKey, searchOpen, setSearchKey, setSearchOpen }) => {
+const Header = ({
+    searchKey,
+    searchOpen,
+    setSearchKey,
+    setSearchOpen,
+    showArchives,
+}) => {
     const dispatch = useDispatch();
 
     return (
@@ -19,7 +25,9 @@ const Header = ({ searchKey, searchOpen, setSearchKey, setSearchOpen }) => {
                 >
                     <MenuIcon width={18} height={18} className="menu-icon" />
                 </div>
-                <span className="logo">Better Keep</span>
+                <span className="logo">
+                    {showArchives ? "Archives" : "Better Keep"}
+                </span>
             </div>
             <div
                 className={

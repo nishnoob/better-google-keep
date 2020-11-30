@@ -11,12 +11,13 @@ import {
     UNPIN_NOTE,
     SELECT_NOTE,
 } from "root/reducer";
+import marked from "marked";
+import DOMPurify from "dompurify";
 
 const DisplayBox = ({ id, title, description, isArchived, isPinned }) => {
     const dispatch = useDispatch();
     const selectedNote = useSelector((state) => state.selectedNote);
     const rawMarkupDescription = DOMPurify.sanitize(marked(description));
-
     return (
         <div
             className={

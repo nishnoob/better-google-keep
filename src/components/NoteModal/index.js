@@ -85,7 +85,7 @@ const NoteModal = ({ selectedNote }) => {
                 </div>
                 <input
                     className="modal-title"
-                    value={noteDetails.title}
+                    value={noteDetails.title || ""}
                     onChange={(e) => {
                         setNoteDetails({
                             ...noteDetails,

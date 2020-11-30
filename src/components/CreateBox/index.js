@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import "./index.css";
 import { CREATE_NOTE } from "root/reducer";
 import { useDispatch } from "react-redux";
+import PinIcon from "icons/pin-icon.svg";
+import ArchiveIcon from "icons/archive-icon.svg";
 
 const createID = () => Math.random().toString(36).substr(2, 9);
 
@@ -12,7 +14,9 @@ const CreateBox = () => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const noteDataRef = useRef({ description, title });
+    const [isPinned, setPinned] = useState(false);
+    const [isArchived, setArchived] = useState(false);
+    const noteDataRef = useRef({ description, title, isPinned, isArchived });
 
     const createNote = () => {
         setExpand(false);
@@ -24,10 +28,14 @@ const CreateBox = () => {
                     id: createID(),
                     description: noteDataRef.current.description,
                     title: noteDataRef.current.title,
+                    isPinned: noteDataRef.current.isPinned,
+                    isArchived: noteDataRef.current.isArchived,
                 },
             });
             setDescription("");
             setTitle("");
+            setPinned(false);
+            setArchived(false);
         }
     };
 
@@ -86,8 +94,38 @@ const CreateBox = () => {
                 }}
             ></textarea>
             {expand && (
-                <div className="close-btn" onClick={createNote}>
-                    Close
+                <div className="buttons-container">
+                    <div
+                        className={
+                            isPinned
+                                ? "create-pin-icon-container pinned"
+                                : "create-pin-icon-container"
+                        }
+                        onClick={() => {
+                            noteDataRef.current.isPinned = !isPinned;
+                            setPinned(!isPinned);
+                        }}
+                        title={isPinned ? "Unpin" : "Pin"}
+                    >
+                        <PinIcon className="create-pin-icon" />
+                    </div>
+                    <div
+                        className={
+                            isArchived
+                                ? "create-archive-icon-container upside-down"
+                                : "create-archive-icon-container"
+                        }
+                        onClick={() => {
+                            noteDataRef.current.isArchived = !isArchived;
+                            setArchived(!isArchived);
+                        }}
+                        title={isArchived ? "Unarchive" : "Archive"}
+                    >
+                        <ArchiveIcon className="create-archive-icon" />
+                    </div>
+                    <div className="close-btn" onClick={createNote}>
+                        Close
+                    </div>
                 </div>
             )}
         </div>

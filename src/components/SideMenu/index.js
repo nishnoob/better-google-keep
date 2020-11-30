@@ -78,7 +78,7 @@ const SideMenu = ({ visible, showArchives }) => {
                         checked={isDarkMode}
                         onChange={() => dispatch({ type: TOGGLE_DARK_MODE })}
                     ></input>
-                    <span class="slider round"></span>
+                    <span className="slider round"></span>
                 </label>
                 <div className="switch-header">DARK MODE</div>
             </div>

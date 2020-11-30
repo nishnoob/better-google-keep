@@ -39,6 +39,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve("./public/index.html"),
+            favicon: path.resolve("./public/favicon.ico"),
         }),
     ],
 };

@@ -57,6 +57,7 @@
     display: none;
     border-radius: 14px;
     cursor: pointer;
+    transition: 0.1s;
 }
 .upside-down {
     transform: rotate(180deg);

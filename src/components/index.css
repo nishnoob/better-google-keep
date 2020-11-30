@@ -51,3 +51,7 @@
         padding: 0px 16px;
     }
 }
+
+.pinned {
+    background-color: var(--color-hover-highlight);
+}
